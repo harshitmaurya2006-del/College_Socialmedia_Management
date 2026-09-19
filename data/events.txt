@@ -1,0 +1,5 @@
+201|Tech Symposium|Main Auditorium|2026-10-20|Talks and demonstrations by student teams.
+202|Cultural Evening|Open Air Theatre|2026-11-05|An evening of music dance and drama.
+203|Annual Sports Meet|College Ground|2026-09-12|Inter-department sports competitions.
+204|Alumni Interaction|Seminar Hall|2026-08-18|Alumni share career experiences with students.
+205|Science Exhibition|Innovation Lab|2026-07-25|Student projects and working models are displayed.

@@ -1,0 +1,6 @@
+101|Mid Semester Examination|Examinations begin on 15 October.|Academic|2026-10-01|1
+102|Library Timing Update|The central library remains open until 8 PM.|General|2026-09-20|2
+103|Sports Meet Registration|Register for the annual sports meet before Friday.|Sports|2026-08-15|3
+104|Placement Preparation Workshop|A resume workshop will be held for final year students.|Career|2026-07-10|2
+105|Scholarship Notice|Applications for the merit scholarship are now open.|Academic|2026-06-05|1
+106|Campus Cleanliness Drive|Students can join the weekend cleanliness drive.|Community|2026-05-22|3
