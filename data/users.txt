@@ -1,7 +1,8 @@
-1|Aarav Mehta|3|admin123|0
-2|Neha Sharma|2|faculty123|0
-3|Rohan Kapoor|2|faculty456|0
-4|Diya Shah|1|student123|1
-5|Kabir Singh|1|student234|2
-6|Meera Iyer|1|student345|3
-7|Vivaan Rao|1|student456|4
+1|Aarav Mehta|3|admin123|0|Høb|Äüb
+2|Neha Sharma|2|faculty123|0|Høb|Äüb
+3|Rohan Kapoor|2|faculty456|0|Høb|Äüb
+4|Diya Shah|1|student123|1|Høb|Äüb
+5|Kabir Singh|1|student234|2|Høb|Äüb
+6|Meera Iyer|1|student345|3|Høb|Äüb
+7|Vivaan Rao|1|student456|4|Høb|Äüb
+8|harshit maurya|1|hn@198|2|btech|
