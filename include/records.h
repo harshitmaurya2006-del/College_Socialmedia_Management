@@ -34,6 +34,7 @@ typedef struct {
     char venue[NAME_SIZE];
     char date[DATE_SIZE];
     char description[TEXT_SIZE];
+    int organizer_id;
 } Event;
 
 typedef struct {
