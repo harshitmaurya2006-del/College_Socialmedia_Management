@@ -3,6 +3,10 @@
 
 #include "records.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct UserNode { User data; struct UserNode *next; } UserNode;
 typedef struct PostNode { Post data; struct PostNode *next; } PostNode;
 typedef struct EventNode { Event data; struct EventNode *next; } EventNode;
@@ -50,5 +54,9 @@ int stack_push(PendingStack *stack, PendingRec value);
 int stack_pop(PendingStack *stack, PendingRec *outValue);
 PendingRec *stack_to_array(const PendingStack *stack, int *outCount);
 void stack_free_all(PendingStack *stack);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

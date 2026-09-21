@@ -3,6 +3,10 @@
 
 #include "ds.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int str_contains_ci(const char *text, const char *part);
 int date_is_valid(const char *date);
 PostNode *search_posts(PostNode *head, const char *keyword, int *outCount);
@@ -16,5 +20,9 @@ void sort_posts_by_date(Post *items, int count, int ascending);
 void sort_events_by_id(Event *items, int count, int ascending);
 void sort_events_by_name(Event *items, int count, int ascending);
 void sort_events_by_date(Event *items, int count, int ascending);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -7,6 +7,10 @@
 #define DATE_SIZE 11
 #define TYPE_SIZE 16
 
+#define ROLE_STUDENT 1
+#define ROLE_FACULTY 2
+#define ROLE_ADMIN 3
+
 typedef struct {
     int id;
     char name[NAME_SIZE];
@@ -38,5 +42,10 @@ typedef struct {
     Post post;
     Event event;
 } PendingRec;
+
+typedef User UserRec;
+typedef Post PostRec;
+typedef Event EventRec;
+typedef PendingRec ActionRec;
 
 #endif
