@@ -35,7 +35,7 @@ UserRec User::toRec() const
 void User::displayProfile() const { std::cout << "ID: " << id << "\nName: " << name << "\nRole: " << roleName() << "\n"; }
 
 // Builds a student from a C record.
-Student::Student(const UserRec &record) : User(record), year(record.year), branch("CSE") {}
+Student::Student(const UserRec &record) : User(record), year(record.year), branch(record.branch[0] == '\0' ? "CSE" : record.branch) {}
 // Runs the student menu.
 void Student::showMenu(CollegeSystem &system)
 {
@@ -56,7 +56,7 @@ void Student::displayProfile() const { User::displayProfile(); std::cout << "Yea
 std::string Student::roleName() const { return "Student"; }
 
 // Builds a faculty user from a C record.
-Faculty::Faculty(const UserRec &record) : User(record), department("General") {}
+Faculty::Faculty(const UserRec &record) : User(record), department(record.department[0] == '\0' ? "General" : record.department) {}
 // Runs the faculty menu.
 void Faculty::showMenu(CollegeSystem &system)
 {

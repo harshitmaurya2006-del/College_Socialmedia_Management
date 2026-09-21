@@ -11,42 +11,50 @@
 #define ROLE_FACULTY 2
 #define ROLE_ADMIN 3
 
-typedef struct {
+typedef struct UserRec {
     int id;
     char name[NAME_SIZE];
     int role;
     char password[NAME_SIZE];
     int year;
-} User;
+    char branch[NAME_SIZE];
+    char department[NAME_SIZE];
+} UserRec;
+#ifndef __cplusplus
+typedef UserRec User;
+#endif
 
-typedef struct {
+typedef struct PostRec {
     int id;
     char title[NAME_SIZE];
     char content[TEXT_SIZE];
     char category[CATEGORY_SIZE];
     char date[DATE_SIZE];
     int author_id;
-} Post;
+} PostRec;
+#ifndef __cplusplus
+typedef PostRec Post;
+#endif
 
-typedef struct {
+typedef struct EventRec {
     int id;
     char name[NAME_SIZE];
     char venue[NAME_SIZE];
     char date[DATE_SIZE];
     char description[TEXT_SIZE];
     int organizer_id;
-} Event;
+} EventRec;
+#ifndef __cplusplus
+typedef EventRec Event;
+#endif
 
 typedef struct {
     char type[TYPE_SIZE];
     int submitted_by;
-    Post post;
-    Event event;
+    PostRec post;
+    EventRec event;
 } PendingRec;
 
-typedef User UserRec;
-typedef Post PostRec;
-typedef Event EventRec;
 typedef PendingRec ActionRec;
 
 #endif

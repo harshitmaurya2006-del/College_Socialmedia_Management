@@ -3,6 +3,7 @@
 
 #include "content.h"
 #include "ds.h"
+#include "algo.h"
 #include "user.h"
 #include <string>
 
@@ -29,8 +30,8 @@ class CollegeSystem {
     void savePosts();
     void saveEvents();
     void savePending();
-    void printPostArray(const Post *items, int count) const;
-    void printEventArray(const Event *items, int count) const;
+    void printPostArray(const PostRec *items, int count) const;
+    void printEventArray(const EventRec *items, int count) const;
     void editPostMenu(int requesterId, bool admin);
     void editEventMenu(int requesterId, bool admin);
     void createPostMenu(int authorId, bool immediate);

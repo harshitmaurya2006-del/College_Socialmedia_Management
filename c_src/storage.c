@@ -95,9 +95,13 @@ int users_load(const char *filename, UserNode **head)
     while (fgets(line, sizeof(line), file) != NULL) {
         strip_line_end(line);
         count = split_fields(line, fields, MAX_FIELDS);
-        if (count != 5 || !parse_int(fields[0], &value.id) || !parse_int(fields[2], &value.role) || !parse_int(fields[4], &value.year)) continue;
+        if ((count != 5 && count != 7) || !parse_int(fields[0], &value.id) || !parse_int(fields[2], &value.role) || !parse_int(fields[4], &value.year)) continue;
         copy_text(value.name, sizeof(value.name), fields[1]);
         copy_text(value.password, sizeof(value.password), fields[3]);
+        if (count == 7) {
+            copy_text(value.branch, sizeof(value.branch), fields[5]);
+            copy_text(value.department, sizeof(value.department), fields[6]);
+        }
         if (!user_append(head, value)) { fclose(file); return -1; }
         ++loaded;
     }
@@ -120,7 +124,11 @@ int users_save(const char *filename, const UserNode *head)
         write_safe_field(file, head->data.name);
         if (fprintf(file, "|%d|", head->data.role) < 0) { fclose(file); return 0; }
         write_safe_field(file, head->data.password);
-        if (fprintf(file, "|%d\n", head->data.year) < 0) { fclose(file); return 0; }
+        if (fprintf(file, "|%d|", head->data.year) < 0) { fclose(file); return 0; }
+        write_safe_field(file, head->data.branch);
+        fputc('|', file);
+        write_safe_field(file, head->data.department);
+        if (fputc('\n', file) == EOF) { fclose(file); return 0; }
         head = head->next;
     }
     if (fclose(file) != 0) return 0;
@@ -196,11 +204,12 @@ int events_load(const char *filename, EventNode **head)
     while (fgets(line, sizeof(line), file) != NULL) {
         strip_line_end(line);
         count = split_fields(line, fields, MAX_FIELDS);
-        if (count != 5 || !parse_int(fields[0], &value.id)) continue;
+        if ((count != 5 && count != 6) || !parse_int(fields[0], &value.id)) continue;
         copy_text(value.name, sizeof(value.name), fields[1]);
         copy_text(value.venue, sizeof(value.venue), fields[2]);
         copy_text(value.date, sizeof(value.date), fields[3]);
         copy_text(value.description, sizeof(value.description), fields[4]);
+        if (count == 6 && !parse_int(fields[5], &value.organizer_id)) continue;
         if (!event_append(head, value)) { fclose(file); return -1; }
         ++loaded;
     }
@@ -223,7 +232,8 @@ int events_save(const char *filename, const EventNode *head)
         write_safe_field(file, head->data.name); fputc('|', file);
         write_safe_field(file, head->data.venue); fputc('|', file);
         write_safe_field(file, head->data.date); fputc('|', file);
-        write_safe_field(file, head->data.description); fputc('\n', file);
+        write_safe_field(file, head->data.description); fputc('|', file);
+        if (fprintf(file, "%d\n", head->data.organizer_id) < 0) { fclose(file); return 0; }
         head = head->next;
     }
     if (fclose(file) != 0) return 0;
@@ -257,11 +267,12 @@ int pending_load(const char *filename, PendingQueue *queue)
             copy_text(value.post.date, sizeof(value.post.date), fields[6]);
             if (!pending_enqueue(queue, value)) { fclose(file); return -1; }
             ++loaded;
-        } else if (strcmp(value.type, "EVENT") == 0 && count == 7 && parse_int(fields[2], &value.event.id)) {
+        } else if (strcmp(value.type, "EVENT") == 0 && (count == 7 || count == 8) && parse_int(fields[2], &value.event.id)) {
             copy_text(value.event.name, sizeof(value.event.name), fields[3]);
             copy_text(value.event.venue, sizeof(value.event.venue), fields[4]);
             copy_text(value.event.date, sizeof(value.event.date), fields[5]);
             copy_text(value.event.description, sizeof(value.event.description), fields[6]);
+            if (count == 8 && !parse_int(fields[7], &value.event.organizer_id)) continue;
             if (!pending_enqueue(queue, value)) { fclose(file); return -1; }
             ++loaded;
         }
@@ -296,7 +307,8 @@ int pending_save(const char *filename, const PendingQueue *queue)
             write_safe_field(file, value->event.name); fputc('|', file);
             write_safe_field(file, value->event.venue); fputc('|', file);
             write_safe_field(file, value->event.date); fputc('|', file);
-            write_safe_field(file, value->event.description); fputc('\n', file);
+            write_safe_field(file, value->event.description); fputc('|', file);
+            if (fprintf(file, "%d\n", value->event.organizer_id) < 0) { fclose(file); return 0; }
         }
     }
     if (fclose(file) != 0) return 0;

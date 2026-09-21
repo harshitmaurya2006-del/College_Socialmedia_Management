@@ -1,4 +1,5 @@
 #include "content.h"
+#include "algo.h"
 #include "utils.h"
 #include <iostream>
 
