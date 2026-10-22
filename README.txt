@@ -1,29 +1,43 @@
-College Social Media Management
+COLLEGE SOCIAL MEDIA MANAGEMENT SYSTEM (C++)
 
-Project context
+FILES
+- member1.cpp: Main menu and program entry point
+- member2.cpp: Student dashboard, viewing and searching posts/events; linked list
+- member3.cpp: Admin dashboard, adding posts and events
+- member4.cpp: Registration, login, file loading and ID generation
+- project.h: Shared data structures and function declarations
+- user.txt: Registered student data (created/updated automatically)
+- post.txt: Post records
+- event.txt: Event records
 
-This project represents a college-focused social media management system. Its
-purpose is to organize notices, posts, events, and user information in one
-place, making it easier for students and college staff to share and manage
-campus updates.
+HOW TO COMPILE (g++)
+1. Keep all files in the same folder.
+2. Open a terminal in that folder.
+3. Run:
+   g++ -std=c++17 member1.cpp member2.cpp member3.cpp member4.cpp -o college_social
+4. Run on Windows:
+   .\college_social.exe
+   On Linux/macOS:
+   ./college_social
 
-Conceptual overview
+ADMIN LOGIN
+Username: admin
+Password: admin123
 
-The system can be understood through several common software design ideas.
-Different user roles, such as students, coordinators, and administrators, have
-different responsibilities. Posts and events are records that can be created,
-reviewed, organized, and viewed. Separating these concepts helps explain how a
-larger application could be planned and maintained.
+DATA FORMAT
+user.txt: name|username|password|roll
+post.txt: id|title|content|author|date
+event.txt: id|title|description|date|venue
+Do not type the | character in fields; the program replaces it with /.
 
-Object-oriented design provides a way to represent users and campus content
-as related entities with distinct roles and responsibilities. Data-structure
-concepts such as lists, queues, and stacks can be used to reason about
-collections, processing order, and recent actions. Searching and sorting
-provide ways to locate and organize records.
+DSA CONCEPTS USED
+- vector: stores records loaded from text files
+- singly linked list: used to display latest posts
+- sorting: orders posts by descending ID for latest posts
+- linear search: checks usernames and searches post/event text
+- traversal: displays records one by one
 
-Repository contents
-
-The member1.cpp, member2.cpp, member3.cpp, member4.cpp, and project.h files are
-intentionally empty placeholders. The post.txt and user.txt files are also
-empty placeholders. No source code or sample records are included in this
-repository version.
+NOTES
+- This is a beginner-friendly educational demo. Passwords are stored as plain text; do not use this design for a real deployed system.
+- Post/event date is entered as text. Latest posts are determined by their increasing ID, not by interpreting calendar dates.
+- Keep the .txt files in the same working directory as the executable.
