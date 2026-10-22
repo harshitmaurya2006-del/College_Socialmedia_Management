@@ -1,0 +1,5 @@
+1|Welcome to College|Welcome to the College Social Media Management System. Check here for announcements and updates.|Admin|17-10-2026
+2|Library Timing Update|The library will remain open until 6 PM this week.|Admin|17-10-2026
+3|Campus Cleanup Drive|Join us for a campus cleanup drive this Friday. Volunteers can meet near the main gate at 9 AM.|Admin|22-10-2026
+4|Student Club Registration|Registration for student clubs is now open. Visit the student affairs office to learn more and sign up.|Admin|22-10-2026
+5|Cafeteria Menu Survey|Share your suggestions for next month's cafeteria menu by submitting the survey to the student council.|Admin|22-10-2026
