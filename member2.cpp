@@ -38,3 +38,19 @@ void showLatestPosts() {
     int count = 0;
     while (current && count < 5) {
         printPost(current->data);
+        current = current->next;
+        count++;
+    }
+    while (head) { PostNode *temp = head; head = head->next; delete temp; }
+}
+
+void showAllEvents() {
+    vector<Event> events = loadEvents();
+    if (events.empty()) { cout << "No events available yet.\n"; return; }
+    cout << "\n========== COLLEGE EVENTS ==========\n";
+    for (const Event &e : events) {
+        cout << "\nEvent ID: " << e.id << "\nTitle: " << e.title
+             << "\nDescription: " << e.description << "\nDate: " << e.date
+             << "\nVenue: " << e.venue << "\n-----------------------------\n";
+    }
+}
