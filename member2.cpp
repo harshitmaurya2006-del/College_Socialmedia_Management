@@ -54,3 +54,17 @@ void showAllEvents() {
              << "\nVenue: " << e.venue << "\n-----------------------------\n";
     }
 }
+
+void searchPosts() {
+    cout << "Enter a word or title to search in posts: ";
+    string key; getline(cin, key);
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+    vector<Post> posts = loadPosts();
+    bool found = false;
+    for (const Post &p : posts) {
+        string text = p.title + " " + p.content + " " + p.author;
+        transform(text.begin(), text.end(), text.begin(), ::tolower);
+        if (text.find(key) != string::npos) { printPost(p); found = true; }
+    }
+    if (!found) cout << "No matching posts found.\n";
+}
