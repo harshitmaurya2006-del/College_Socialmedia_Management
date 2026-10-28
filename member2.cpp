@@ -68,3 +68,22 @@ void searchPosts() {
     }
     if (!found) cout << "No matching posts found.\n";
 }
+
+void searchEvents() {
+    cout << "Enter a word, event title, date, or venue to search: ";
+    string key; getline(cin, key);
+    transform(key.begin(), key.end(), key.begin(), ::tolower);
+    vector<Event> events = loadEvents();
+    bool found = false;
+    for (const Event &e : events) {
+        string text = e.title + " " + e.description + " " + e.date + " " + e.venue;
+        transform(text.begin(), text.end(), text.begin(), ::tolower);
+        if (text.find(key) != string::npos) {
+            cout << "\nEvent ID: " << e.id << "\nTitle: " << e.title
+                 << "\nDescription: " << e.description << "\nDate: " << e.date
+                 << "\nVenue: " << e.venue << "\n-----------------------------\n";
+            found = true;
+        }
+    }
+    if (!found) cout << "No matching events found.\n";
+}
