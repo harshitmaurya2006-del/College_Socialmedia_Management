@@ -14,3 +14,17 @@ void addPost() {
     file << p.id << '|' << p.title << '|' << p.content << '|' << p.author << '|' << p.date << '\n';
     cout << "Post published successfully.\n";
 }
+void addEvent() {
+    Event e;
+    e.id = nextEventId();
+    cout << "Enter event title: "; getline(cin, e.title);
+    cout << "Enter event description (one line): "; getline(cin, e.description);
+    cout << "Enter event date: "; getline(cin, e.date);
+    cout << "Enter venue: "; getline(cin, e.venue);
+    e.title = cleanField(e.title); e.description = cleanField(e.description);
+    e.date = cleanField(e.date); e.venue = cleanField(e.venue);
+    ofstream file("event.txt", ios::app);
+    if (!file) { cout << "Could not open event.txt.\n"; return; }
+    file << e.id << '|' << e.title << '|' << e.description << '|' << e.date << '|' << e.venue << '\n';
+    cout << "Event published successfully.\n";
+}
