@@ -87,3 +87,18 @@ void searchEvents() {
     }
     if (!found) cout << "No matching events found.\n";
 }
+void studentDashboard(const User &student) {
+    while (true) {
+        cout << "\n========== STUDENT DASHBOARD ==========\n";
+        cout << "Welcome, " << student.name << "!\n";
+        cout << "1. View latest posts\n2. View all posts\n3. View all events\n4. Search posts\n5. Search events\n6. Logout\nChoose option: ";
+        string choice; getline(cin, choice);
+        if (choice == "1") showLatestPosts();
+        else if (choice == "2") showAllPosts();
+        else if (choice == "3") showAllEvents();
+        else if (choice == "4") searchPosts();
+        else if (choice == "5") searchEvents();
+        else if (choice == "6") { cout << "Logged out.\n"; break; }
+        else cout << "Invalid option.\n";
+    }
+}
