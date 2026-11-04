@@ -1,4 +1,4 @@
-#include "project.h"
+r#include "project.h"
 
 void addPost() {
     Post p;
@@ -27,4 +27,17 @@ void addEvent() {
     if (!file) { cout << "Could not open event.txt.\n"; return; }
     file << e.id << '|' << e.title << '|' << e.description << '|' << e.date << '|' << e.venue << '\n';
     cout << "Event published successfully.\n";
+}
+void adminDashboard() {
+    while (true) {
+        cout << "\n========== ADMIN DASHBOARD ==========\n";
+        cout << "1. Publish a post\n2. Add an event\n3. View all posts\n4. View all events\n5. Logout\nChoose option: ";
+        string choice; getline(cin, choice);
+        if (choice == "1") addPost();
+        else if (choice == "2") addEvent();
+        else if (choice == "3") showAllPosts();
+        else if (choice == "4") showAllEvents();
+        else if (choice == "5") { cout << "Admin logged out.\n"; break; }
+        else cout << "Invalid option.\n";
+    }
 }
