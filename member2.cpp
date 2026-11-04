@@ -87,6 +87,7 @@ void searchEvents() {
     }
     if (!found) cout << "No matching events found.\n";
 }
+
 void studentDashboard(const User &student) {
     while (true) {
         cout << "\n========== STUDENT DASHBOARD ==========\n";
