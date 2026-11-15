@@ -34,6 +34,7 @@ vector<Post> loadPosts() {
     return posts;
 }
 
+
 vector<Event> loadEvents() {
     vector<Event> events;
     ifstream file("event.txt"); string line;
