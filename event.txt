@@ -1,0 +1,5 @@
+1|Freshers Welcome|An evening of introductions, music and games to welcome the first-year batch.|20-11-2026|Main Auditorium
+2|Inter-Branch Coding Contest|Three-hour individual programming contest open to all branches. Bring your own laptop.|27-11-2026|Computer Lab 2
+3|Blood Donation Camp|Voluntary blood donation camp organised with the NSS unit. Carry your college ID card.|04-12-2026|Seminar Hall
+4|Annual Sports Meet|Track events, cricket and volleyball matches between departments over two days.|12-12-2026|College Ground
+5|Guest Lecture on Data Structures|Talk on how linked lists, trees and hashing are used in real software systems.|18-12-2026|Lecture Hall 1
