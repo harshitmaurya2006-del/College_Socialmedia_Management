@@ -1,0 +1,13 @@
+# Compiled program (see "HOW TO COMPILE" in README.txt)
+college_social
+college_social.exe
+a.out
+*.exe
+*.o
+*.obj
+
+# Editor and OS clutter
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
