@@ -6,6 +6,21 @@ string cleanField(string value) {
     return value;
 }
 
+// Removes spaces/tabs from both ends so "  aarav  " and "aarav" are treated the same.
+static string trim(const string &value) {
+    const char *spaces = " \t\r\n";
+    size_t start = value.find_first_not_of(spaces);
+    if (start == string::npos) return "";
+    size_t end = value.find_last_not_of(spaces);
+    return value.substr(start, end - start + 1);
+}
+
+// Lower-case copy, used to compare usernames and roll numbers without caring about case.
+static string toLower(string value) {
+    transform(value.begin(), value.end(), value.begin(), ::tolower);
+    return value;
+}
+
 vector<User> loadUsers() {
     vector<User> users;
     ifstream file("user.txt");
@@ -54,14 +69,18 @@ bool registerStudent() {
     cout << "Choose username: "; getline(cin, u.username);
     cout << "Choose password: "; getline(cin, u.password);
     cout << "Enter roll number: "; getline(cin, u.roll);
-    u.name = cleanField(u.name); u.username = cleanField(u.username);
-    u.password = cleanField(u.password); u.roll = cleanField(u.roll);
-    if (u.name.empty() || u.username.empty() || u.password.empty() || u.roll.empty()) {
+    u.name = trim(cleanField(u.name)); u.username = trim(cleanField(u.username));
+    u.password = cleanField(u.password); u.roll = trim(cleanField(u.roll));
+    // A password made only of spaces counts as blank too.
+    if (u.name.empty() || u.username.empty() || trim(u.password).empty() || u.roll.empty()) {
         cout << "All fields are required. Registration cancelled.\n"; return false;
     }
     vector<User> users = loadUsers();
     for (const User &existing : users) {
-        if (existing.username == u.username) { cout << "Username already exists. Please choose another.\n"; return false; }
+        // "Aarav_Sharma" and "aarav_sharma" would be confusing as two accounts, so compare without case.
+        if (toLower(existing.username) == toLower(u.username)) { cout << "Username already exists. Please choose another.\n"; return false; }
+        // One roll number belongs to one student, so it can only be registered once.
+        if (toLower(existing.roll) == toLower(u.roll)) { cout << "This roll number is already registered.\n"; return false; }
     }
     ofstream file("user.txt", ios::app);
     if (!file) { cout << "Could not open user.txt.\n"; return false; }
@@ -74,6 +93,7 @@ bool studentLogin(User &loggedIn) {
     string username, password;
     cout << "Username: "; getline(cin, username);
     cout << "Password: "; getline(cin, password);
+    username = trim(username);
     vector<User> users = loadUsers();
     for (const User &u : users) {
         if (u.username == username && u.password == password) {
